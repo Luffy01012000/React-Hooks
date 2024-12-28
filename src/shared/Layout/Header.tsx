@@ -67,6 +67,9 @@ export default function Header() {
         <li>
           <NavLink to="/useOptimistic1">Optimistic1</NavLink>
         </li>
+        <li>
+          <NavLink to="/use">Use</NavLink>
+        </li>
       </ul>
     </div>
   );

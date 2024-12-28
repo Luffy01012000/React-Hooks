@@ -20,6 +20,7 @@ import UseDeferredValueExample from "./hooks/useDeferredValue";
 import UseActionStateExample from "./hooks/useActionState";
 import UseOptimisticExample from "./hooks/useOptimistic";
 // import UseOptimisticExample1 from "./hooks/useOptimistic/reactExample";
+import UseExample from "./hooks/Use";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
               }
             />
             {/* <Route path="/useOptimistic1" element={<UseOptimisticExample1 />} /> */}
+            <Route path="/use" element={<UseExample />} />
           </Route>
           <Route path="redux">
             <Route index element={<Counter />} />
