@@ -4,7 +4,7 @@ const index: FC = () => {
   const [number, setNumber] = useState(0);
   const [dark, setDark] = useState(true);
   //   Without useMemo
-  //   const doubleNumber = slowFunction(number);
+    // const doubleNumber = slowFunction(number);
   //   With useMemo
   const doubleNumber = useMemo(() => slowFunction(number), [number]);
 

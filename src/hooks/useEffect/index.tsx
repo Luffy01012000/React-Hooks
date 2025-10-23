@@ -16,7 +16,19 @@ function index() {
   };
   useEffect(() => {
     count = state;
-    console.log(state, count);
+    console.log("state:",state,"count:", count);
+    // Runs on every re-render
+  });
+  useEffect(() => {
+    count = state;
+    console.log("state:",state,"count:", count);
+    // Runs only on mount
+  },[]);
+  // console.log("state0:",state,"count0:", count);
+  useEffect(() => {
+    count = state;
+    console.log("state1:",state,"count1:", count);
+    // Runs on count change
   }, [count]);
   useEffect(() => {
     setState(0);

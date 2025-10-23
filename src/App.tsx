@@ -21,12 +21,14 @@ import UseActionStateExample from "./hooks/useActionState";
 import UseOptimisticExample from "./hooks/useOptimistic";
 // import UseOptimisticExample1 from "./hooks/useOptimistic/reactExample";
 import UseExample from "./hooks/Use";
+import TodoList from "./pages/TodoList";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+            <Route path="/todo" element={<TodoList />} />
           <Route element={<RootLayout />}>
             <Route index element={<StateExample />} />
             <Route path="/useEffect" element={<EffectExample />} />

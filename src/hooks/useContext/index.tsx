@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { Component, createContext, useContext, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
+import ThemeContext, { useTheme, useThemeUpdate } from "../../components/ThemeContext";
 
 interface GlobalStateContextType {
   isToggle: boolean;
@@ -10,11 +11,20 @@ const GlobalStateContext = createContext<GlobalStateContextType | null>(null);
 export const index: React.FC = () => {
   const [isToggle, setIsToggle] = useState(false);
   return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
     <GlobalStateContext.Provider value={{ isToggle, setIsToggle }}>
       <p>Context</p>
       <ChildToggle />
       <ChildDisplay />
+      <ClassContextComponent/>
     </GlobalStateContext.Provider>
+    <ThemeContext>
+      <ThemeFC/>
+    </ThemeContext>
+    </div>
   );
 };
 
@@ -49,3 +59,50 @@ const ChildDisplay = () =>
       </div>
     );
   };
+
+class ClassContextComponent extends Component {
+  // constructor()
+  themeStyle(dark: boolean|undefined){
+    return {
+      backgroundColor: dark? '#333':'#ccc',
+      color: dark? '#ccc': '#333',
+      padding: '2rem',
+      margin: '2rem',
+    }
+  }
+
+  render(){
+    return (
+      <GlobalStateContext.Consumer >
+        {themeContext => {
+          return (<div style={this.themeStyle(themeContext?.isToggle)}>
+            Class Theme
+          </div>)
+        }}
+      </GlobalStateContext.Consumer>
+    )
+  }
+}
+
+const ThemeFC = ()=>{
+  const themeUpdate = useThemeUpdate()
+  const theme = useTheme()
+  const themeStyle =(dark: boolean|undefined)=>{
+    return {
+      backgroundColor: dark? '#333':'#ccc',
+      color: dark? '#ccc': '#333',
+      padding: '2rem',
+      margin: '2rem',
+    }
+  }
+  return (
+    <div>
+      <button onClick={themeUpdate?.toggleTheme}>
+        toggle
+      </button>
+    {<div style={themeStyle(theme?.isToggle)}>
+            Custom Theme
+          </div>}
+    </div>
+  )
+}

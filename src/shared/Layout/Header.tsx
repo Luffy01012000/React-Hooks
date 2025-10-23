@@ -4,7 +4,7 @@ export default function Header() {
     <div style={{ top: "0px" }}>
       <ul
         style={{
-          display: "flex",
+          
           outline: "none",
           listStyle: "none",
           gap: "20px",
